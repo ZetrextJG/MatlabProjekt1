@@ -1,0 +1,42 @@
+
+f = @sin; % Funckja podcałkowa
+calkaF = @cos; % Funckja pierwotna
+a = -2; % Początek przedziału
+b = 2; % Koniec przedzialu
+n = 10; % Liczba węzłów
+koniec = KonceKwad.Lewy; % Ktory koniec
+
+wezly = linspace(a,b,n); % Tworzenie wezłów
+H = (b - a) / n; % Wyliczanie odległości między węzłami
+
+% Wyznacznie kwadratury
+[wynik, wysokosci, punkty] = kwadProst(wezly, f, koniec, H);
+
+% Wartosci dla funkcji podcałkowej
+x = linspace(a, b, 1000);
+y = f(x);
+
+hold on;
+xticks(wezly);
+
+% Plottowanie fukcji podcalkowej 
+plot(x, y, LineWidth=2);
+
+% Naniesienie wezłów
+plot(punkty, wysokosci, "ro")
+
+% Obrazowanie wysokosci i pola kazdego prosotkatów
+for i = 2:n
+    xx = [wezly(i-1), wezly(i)];
+    yy = [wysokosci(i-1), wysokosci(i-1)];
+    plot(xx, yy, "g", LineWidth=1.5);
+    
+    bl = [xx(1)]
+end
+
+% Osie OX i OY
+xline(0);
+yline(0);
+
+legend("y = sin x", "wezly", "wysokosci");
+hold off;
