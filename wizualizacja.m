@@ -1,17 +1,16 @@
-
-f = @exp; % Funckja podcałkowa
-a = -2; % Początek przedziału
-b = 2; % Koniec przedzialu
-n = 10; % Liczba węzłów
+f = @exp; % Funckja podcalkowa
+a = -2; % Początek przedzialu
+b = 1; % Koniec przedzialu
+n = 15; % Liczba wezlow
 koniec = KonceKwad.Srodek; % Ktory koniec
 
-wezly = linspace(a,b,n); % Tworzenie wezłów
-H = (b - a) / n; % Wyliczanie odległości między węzłami
+wezly = linspace(a,b,n); % Tworzenie wezlow
+H = (b - a) / n; % Wyliczanie odleglosci miedzy wezłami
 
 % Wyznacznie kwadratury
 [wynik, wysokosci, punkty] = kwadProst(wezly, f, koniec, H);
 
-% Wartosci dla funkcji podcałkowej
+% Wartosci dla funkcji podcalkowej
 x = linspace(a, b, 1000);
 y = f(x);
 
@@ -24,7 +23,7 @@ plot(x, y, LineWidth=2);
 % Naniesienie wezłów
 plot(punkty, wysokosci, "ro")
 
-% Obrazowanie wysokosci i pola kazdego prosotkatów
+% Obrazowanie wysokosci i pola kazdego prosotkatow
 for i = 2:n
 
     % Linia wysokosci prostokata
@@ -35,7 +34,7 @@ for i = 2:n
     dlg = wezly(i) - wezly(i - 1);
     wys = abs(wysokosci(i - 1));
 
-    % Pole prostokąta
+    % Pole prostokata
     if wysokosci(i - 1) < 0
         pos = [wezly(i - 1), wysokosci(i - 1), dlg, wys];
     else
